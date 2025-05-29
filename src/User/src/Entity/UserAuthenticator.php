@@ -7,6 +7,7 @@ use App\User\src\Repository\UserAuthenticatorRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserAuthenticatorRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class UserAuthenticator
 {
 

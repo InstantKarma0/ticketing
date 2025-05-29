@@ -8,8 +8,10 @@ use App\Company\src\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Company
 {
 
@@ -21,21 +23,22 @@ class Company
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "Le nom de de la société est obligatoire.")]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "L'adresse de la société est obligatoire.")]
     private ?string $address1 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address2 = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "Le code postal de la société est obligatoire.")]
     private ?string $zipCode = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $city = null;
-
-    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "La ville de la société est obligatoire.")]
     private ?string $town = null;
 
     /**
@@ -98,18 +101,6 @@ class Company
     public function setZipCode(string $zipCode): static
     {
         $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): static
-    {
-        $this->city = $city;
 
         return $this;
     }

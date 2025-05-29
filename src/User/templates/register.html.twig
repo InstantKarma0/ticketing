@@ -1,0 +1,95 @@
+{% extends "Common/templates/base.html.twig" %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.firstname) }}
+                {{ form_label(form.firstname) }}
+
+                {{ form_errors(form.firstname) }}
+
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.lastname) }}
+                {{ form_label(form.lastname) }}
+                    {{ form_errors(form.lastname) }}
+
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.email) }}
+                {{ form_label(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.password.first) }}
+                {{ form_label(form.password.first) }}
+                {{ form_errors(form.password.first) }}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.password.second) }}
+                {{ form_label(form.password.second) }}
+                {{ form_errors(form.password.second) }}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.refCompany.name) }}
+                {{ form_label(form.refCompany.name) }}
+                {{ form_errors(form.refCompany.name) }}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.refCompany.address1) }}
+                {{ form_label(form.refCompany.address1) }}
+                {{ form_errors(form.refCompany.address1) }}
+
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.refCompany.address2) }}
+                {{ form_label(form.refCompany.address2) }}
+                {{ form_errors(form.refCompany.address2) }}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.refCompany.zipCode) }}
+                {{ form_label(form.refCompany.zipCode) }}
+                {{ form_errors(form.refCompany.zipCode) }}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-floating mt-3">
+                {{ form_widget(form.refCompany.town) }}
+                {{ form_label(form.refCompany.town) }}
+                {{ form_errors(form.refCompany.town) }}
+            </div>
+        </div>
+    </div>
+
+    <button type="submit">S'inscrire</button>
+    {{ form_end(form) }}
+
+    <form method="post" action="{{ path('user_register') }}">
+
+
+
+    </form>
+{% endblock %}

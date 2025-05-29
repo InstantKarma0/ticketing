@@ -9,6 +9,7 @@ use App\Ticket\src\Entity\TicketStatus;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LogRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Log
 {
 

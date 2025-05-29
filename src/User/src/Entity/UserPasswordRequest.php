@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: UserPasswordRequestRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class UserPasswordRequest
 {
 

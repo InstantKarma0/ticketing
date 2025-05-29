@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
         {% endblock %}
 
         {% block javascripts %}
@@ -12,6 +13,27 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    {% if app.session.flashbag.peekAll|length > 0 and app.user is null %}
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div id="appToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>" class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    {#<small>11 mins ago</small>*#}
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>

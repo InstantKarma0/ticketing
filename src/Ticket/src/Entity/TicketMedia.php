@@ -7,6 +7,7 @@ use App\Ticket\src\Repository\TicketMediaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TicketMediaRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class TicketMedia
 {
 

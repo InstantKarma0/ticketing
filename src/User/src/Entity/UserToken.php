@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Random\RandomException;
 
 #[ORM\Entity(repositoryClass: UserTokenRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class UserToken
 {
 
