@@ -5,91 +5,110 @@
 {% block body %}
     <h1>Register</h1>
 
-    {{ form_start(form) }}
+    <div id="register_container">
+        {{ form_start(form) }}
 
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.firstname) }}
-                {{ form_label(form.firstname) }}
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.firstname) }}
+                    {{ form_label(form.firstname) }}
 
-                {{ form_errors(form.firstname) }}
+                    {{ form_errors(form.firstname) }}
 
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.lastname) }}
-                {{ form_label(form.lastname) }}
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.lastname) }}
+                    {{ form_label(form.lastname) }}
                     {{ form_errors(form.lastname) }}
 
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.email) }}
-                {{ form_label(form.email) }}
-                {{ form_errors(form.email) }}
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.email) }}
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.password.first) }}
-                {{ form_label(form.password.first) }}
-                {{ form_errors(form.password.first) }}
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.password.first) }}
+                    {{ form_label(form.password.first) }}
+                    {{ form_errors(form.password.first) }}
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.password.second) }}
-                {{ form_label(form.password.second) }}
-                {{ form_errors(form.password.second) }}
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.password.second) }}
+                    {{ form_label(form.password.second) }}
+                    {{ form_errors(form.password.second) }}
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.refCompany.name) }}
-                {{ form_label(form.refCompany.name) }}
-                {{ form_errors(form.refCompany.name) }}
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.refCompany.name) }}
+                    {{ form_label(form.refCompany.name) }}
+                    {{ form_errors(form.refCompany.name) }}
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.refCompany.address1) }}
-                {{ form_label(form.refCompany.address1) }}
-                {{ form_errors(form.refCompany.address1) }}
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.refCompany.address1) }}
+                    {{ form_label(form.refCompany.address1) }}
+                    {{ form_errors(form.refCompany.address1) }}
 
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.refCompany.address2) }}
+                    {{ form_label(form.refCompany.address2) }}
+                    {{ form_errors(form.refCompany.address2) }}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.refCompany.zipCode) }}
+                    {{ form_label(form.refCompany.zipCode) }}
+                    {{ form_errors(form.refCompany.zipCode) }}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-floating mt-3">
+                    {{ form_widget(form.refCompany.town) }}
+                    {{ form_label(form.refCompany.town) }}
+                    {{ form_errors(form.refCompany.town) }}
+                </div>S
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.refCompany.address2) }}
-                {{ form_label(form.refCompany.address2) }}
-                {{ form_errors(form.refCompany.address2) }}
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.refCompany.zipCode) }}
-                {{ form_label(form.refCompany.zipCode) }}
-                {{ form_errors(form.refCompany.zipCode) }}
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-floating mt-3">
-                {{ form_widget(form.refCompany.town) }}
-                {{ form_label(form.refCompany.town) }}
-                {{ form_errors(form.refCompany.town) }}
-            </div>
-        </div>
+
+        <button type="submit">S'inscrire</button>
+        {{ form_end(form) }}
     </div>
-
-    <button type="submit">S'inscrire</button>
-    {{ form_end(form) }}
-
-    <form method="post" action="{{ path('user_register') }}">
+{% endblock %}
 
 
-
-    </form>
+{% block success_message %}
+    <turbo-stream action="replace" target="register_container">
+        <template>
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success">
+                        <h2>Votre compte a été créé avec succès.</h2>
+                        <p>
+                            Vous pouvez maintenant vous connecter.<br> Vous allez être redirigé vers la page de connexion dans quelques secondes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                setTimeout(() => {
+                    window.location.href = "{{ path('app_login') }}";
+                }, 5000);
+            </script>
+        </template>
+    </turbo-stream>
 {% endblock %}

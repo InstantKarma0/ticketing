@@ -7,9 +7,11 @@ use App\User\src\Form\UserType;
 use App\User\src\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\UX\Turbo\TurboBundle;
 
 class UserController extends AbstractController
 {
@@ -32,7 +34,6 @@ class UserController extends AbstractController
              ]);
          }
 
-
         // Handle the form submission
         $result = $this->userService->register($form, $request);
 
@@ -43,8 +44,16 @@ class UserController extends AbstractController
             ]), 422);
         }
 
-        // If the result is a Response, it means the registration was successful
-        return $result;
+        if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+            // If the request comes from Turbo, set the content type as text/vnd.turbo-stream.html and only send the HTML to update
+            $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+            return $this->renderBlock('User/templates/register.html.twig', 'success_message');
+        }
+
+        // Redirect to the homepage
+        $request->getSession()->getFlashBag()->add('success', 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.');
+
+        return new RedirectResponse("/");
 
     }
 

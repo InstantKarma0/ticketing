@@ -8,9 +8,7 @@ use App\User\src\Entity\UserProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class UserService
@@ -23,7 +21,7 @@ readonly class UserService
     {
     }
 
-    public function register(FormInterface $form, Request $request): FormInterface|Response
+    public function register(FormInterface $form, Request $request): ?FormInterface
     {
         // Handle the form submission
         $form->handleRequest($request);
@@ -77,9 +75,7 @@ readonly class UserService
 
         $this->em->flush();
 
-        // Redirect to the homepage
-        $request->getSession()->getFlashBag()->add('success', 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.');
 
-        return new RedirectResponse("/");
+        return null;
     }
 }
